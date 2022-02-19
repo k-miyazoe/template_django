@@ -1,0 +1,8 @@
+docker build -t template_django .
+docker run --rm --name template_django -v $PWD:/code template_django django-admin startproject template .
+docker run --rm --name template_django -v $PWD:/code -d -p 8000:8000 template_django
+docker stop template_django
+
+python manage.py startapp app
+python manage.py makemigrations
+python manage.py migrate
